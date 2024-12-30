@@ -67,9 +67,12 @@ button {
     padding: 5px;
   }
   #editorDiv textarea {
-    width: calc(100% - 5px);
-    height: calc(100% - 40px);
+    width: 100%;
+    height: calc(100% - 35px);
     resize: none;
+    background-color: #333;
+    color: #DDD2bb;
+    font-family: "Roboto Mono", monospace;
   }
   
   #outputDiv {
