@@ -1,0 +1,144 @@
+button {
+    margin-left: 5px;
+    font-family: monospace;
+    font-size: 20px;
+    background-color: #eeddcc;
+    border: 1px solid #cc9966;
+  }
+  button:hover {
+    background-color: #ddbb99;
+  }
+  button:active {
+    background-color: #cc9966;
+    color: #ffffff;
+  }
+  
+  [type="file"] {
+    display: none;
+  }
+  
+  [type="file"] + label {
+    display: inline-block;
+    margin-left: 5px;
+    font-family: monospace;
+    font-size: 20px;
+    background-color: #eeddcc;
+    border: 1px solid #cc9966;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
+  }
+  
+  [type="file"] + label:hover {
+    background-color: #ddbb99;
+  }
+  [type="file"] + label:active {
+    background-color: #cc9966;
+    color: #ffffff;
+  }
+  
+  flex {
+    display: flex;
+    width: calc(50vw - 12px);
+    margin-bottom: 5px;
+  }
+  
+  #title {
+    width: 10px;
+    flex-grow: 1;
+    border: 1px solid #fff;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: 500;
+    color: #66cccc;
+  }
+  #title:hover {
+    border: 1px solid #66cccc;
+  }
+  
+  #editorDiv {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(50% - 12px);
+    height: calc(100% - 12px);
+    border: 1px solid #6666cc;
+    padding: 5px;
+  }
+  #editorDiv textarea {
+    width: calc(100% - 5px);
+    height: calc(100% - 40px);
+    resize: none;
+  }
+  
+  #outputDiv {
+    font-family: monospace;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: calc(50% - 12px);
+    height: calc(50% - 12px);
+    border: 1px solid #cc6666;
+    padding: 5px;
+  }
+  #outputDiv input {
+    width: 50px;
+    text-align: right;
+    font-family: monospace;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
+  #outputDiv canvas {
+    height: min(calc(50vh - 50px), calc(50vw - 15px));
+    width: min(calc(50vw - 15px), calc(50vh - 50px));
+    border: 1px solid #000;
+    image-rendering: pixelated;
+  }
+  
+  #error {
+    display: none;
+    color: #990000;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  #renderPanel {
+    display: none;
+  }
+  
+  #renderPanel h1 {
+    color: #cc66cc;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  #renderFrame {
+    color: #993399;
+    font-weight: bold;
+  }
+  
+  #renderPanel button {
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+  
+  #guideDiv {
+    font-family: sans-serif;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(50% - 12px);
+    height: calc(50% - 12px);
+    border: 1px solid #66cc66;
+    padding: 5px;
+    overflow: auto;
+  }
+  #guideDiv h1 {
+    font-size: 28px;
+  }

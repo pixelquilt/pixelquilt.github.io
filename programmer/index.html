@@ -1,0 +1,70 @@
+<head>
+    <title>Pixel Quilt Programmer</title>
+    <script src="programmer.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onLoad="init()">
+    <div id="editorDiv">
+        <flex>
+            <input id="title">
+            <button id="new">New</button>
+            <input id="load" type="file" accept=".pqs">
+            <label for="load">Load</label>
+            <button id="save">Save</button>
+            <button id="render">Render</button>
+        </flex>
+<textarea id="editor">
+// Put your code here.
+// Use // to write comments that aren't executed.
+</textarea>
+    </div>
+    <div id="outputDiv">
+        Width: <input id="width" value="32">
+        Height: <input id="height" value="32">
+        <br>
+        <canvas id="output"></canvas>
+        <div id="error"></div>
+        <div id="renderPanel">
+            <h1>Rendering video...</h1>
+            Current frame: <span id="renderFrame">0</span><br>
+            <button id="cancel">Cancel Rendering</button>
+        </div>
+    </div>
+    <div id="guideDiv">
+        <h1>Pixel Quilt Programming Guide</h1>
+        <p>
+            Pixel Quilt videos can be programmed using any JavaScript functionality supported by your web browser.
+            In addition, two special functions are provided:
+        </p>
+        <ul>
+            <li>set(x, y, r, g, b)</li>
+            <li>wait(seconds)</li>
+        </ul>
+        <p>
+            The <b>set</b> function sets the color of the pixel at coordinate (x, y) to the color (r, g, b) where the color
+            components are all values between 0 (off) and 255 (fully on).
+        </p>
+        <p>
+            The <b>wait</b> function waits the given number of (fractional) seconds before resuming execution.
+        </p>
+        <p>
+            When execution of your code reaches the end, the video terminates and loops to the beginning again.
+        </p>
+        <p>
+            Combining <b>set</b> and <b>wait</b> functions you can set the colors of the pixels and then move to the next
+            frame (a 60th of a second), or some other future point in order to create animations. Use the Render button to
+            create a pixel quilt video file that can be run on a physical display.
+        </p>
+        <h2>Advanced Usage</h2>
+        <p>
+            Your code executed in a dynamically created Web Worker in the background, passing messages to this
+            application for display. In order for the <b>wait</b> function to work, the code has to be translated
+            to turn 'wait(1)' into 'await wait(1)' in order to use JavaScript asynchronous functions correctly.
+            This translation only works if the line starts with 'wait(', potentially after some spaces.
+        </p>
+        <p>
+            In addition, if you write functions that themselves need to call <b>wait</b>, you must declare them as
+            async functions and call them using await. Failure to do this will cause waits to be ignored.
+        </p>
+    </div>
+</body>
