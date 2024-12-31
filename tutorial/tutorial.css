@@ -2,6 +2,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    margin-left: max(calc((100% - 60em) / 2), 0px);
+    margin-right: max(calc((100% - 60em) / 2), 0px);
+    border: 1px solid #c96;
+    padding: 5px;
+}
+
 h1 {
     font-size: 200%;
     font-weight: bold;
@@ -19,6 +26,8 @@ h3 {
 
 code {
     font-family: 'Roboto Mono', monospace;
+    margin-left: 10px;
+    color: #393;
 }
 
 codeblock {
@@ -27,12 +36,16 @@ codeblock {
     background-color: #333;
     color: #DDD2bb;
     font-family: 'Roboto Mono', monospace;
+    white-space: pre;
 }
 
 question {
     display: block;
     color: #b73;
-    font-weight: bold;
+    width: 100%;
+    border: 1px solid #b73;
+    padding: 5px;
+    margin-top: 10px;
 }
 
 answer {
