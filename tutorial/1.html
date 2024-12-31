@@ -1,0 +1,139 @@
+<head>
+    <title>Pixel Quilt Tutorial 1: Coordinates and Colors</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+<h1>Pixel Quilt Tutorial 1: Coordinates and Colors</h1>
+<h2>Coordinates</h2>
+<p>The Pixel Quilt, like many displays, is divided into evenly spaced columns
+and rows of pixels. Pixel Quilts come in various sizes, but for this tutorial
+we’ll assume a 32x32 quilt.</p>
+
+<p>The columns of a 32x32 Pixel Quilt are numbered starting at 0 on the left
+and ending at 31 on the right, like in the diagram below.</p>
+
+TODO
+
+<p>Similarly, the rows are numbered starting at 0 on the top and ending at 31
+on the bottom like in the diagram below.</p>
+
+TODO
+
+<p>The location of a pixel in the quilt, often called its <b>coordinate</b>, is
+given by listing the column first, followed by the row. The column is also
+called the <b>x coordinate</b>, and the row the <b>y coordinate</b>. The full
+coordinate is often written (x, y). The diagram below shows the coordinates of
+some of the pixels in the quilt.</p>
+
+TODO
+
+<p>As a further example, if we referred to the coordinate (5, 2) on a 32x32
+quilt, we’d be talking about the blue one in the below diagram.</p>
+
+TODO
+
+<h3>Questions</h3>
+<question onclick="document.querySelector('#a1').style.display='block'">What is
+the coordinate of the blue pixel in this 8x8 pixel quilt?<br>
+TODO</question>
+<answer id="a1">Answer: (1, 7)</answer>
+
+<question onclick="document.querySelector('#a2').style.display='block'">Which
+coordinate is valid on a 32x32 pixel quilt but not an 8x8 quilt?<br>
+(3, 5)<br>
+(0, 0)<br>
+(1, 12)</question>
+<answer id="a2">Answer: (1, 12)</answer>
+
+<h2>Colors</h2>
+<p>Colors on the Pixel Quilt, again like many displays, are made by combining
+red, green, and blue light in various proportions. Red, green, and blue are the
+<b>primary</b> colors of an <b>additive</b> color system. This is different
+from a subtractive color system like is used with ink and paints.</p>
+
+<p>Combining the three primary colors gives the vast majority of colors that a
+human eye can see. Scientifically this is because human eyes have three color
+receptors that roughly correspond to the red, green, and blue colors and
+everything else we see is from a combination of the three receptors.</p>
+
+<p>As an example, combining red and green makes yellow. Combining red and blue
+makes magenta (aka violet or purple). Combining all three makes white. The
+absence of any of the colors makes black. Some of the basic combinations of
+colors can be seen in the below diagram.</p>
+
+TODO
+
+<p>The three primary colors don’t have to be just there or not though, they can
+each have varying levels. Having more green than red gives a yellow-green tint
+while more red than green gives an orange tint. In addition, even the primary
+colors can be made darker by having them at less than full, and many more
+colors can be produced by combining levels of all three primary colors.</p>
+
+<p>On the pixel quilt, as with many computer systems, colors are represented
+with three numbers r, g, and b representing the levels for red, green, and
+blue. Each number can range from 0 meaning the color is completely off, to 255
+meaning the color is completely on. These colors are often written in the form
+(r, g, b), for example (255, 0, 0) for a solid red color.</p>
+
+<h3>Questions</h3>
+<question onclick="document.querySelector('a3').style.display='block'">Which of
+the following represents the solid blue color?<br>
+(0, 255, 0)<br>
+(255, 255, 0)<br>
+(0, 0, 255)</question>
+<answer id="a3">Answer: (0, 0, 255)</answer>
+
+<question onclick="document.querySelector('a4').style.display='block'">What
+color is represented by (255, 128, 0)?<br>
+Purple<br>
+Orange<br>
+Yellow</question>
+<answer id="a4">Answer: Orange</answer>
+
+<question onclick="document.querySelector('a5').style.display='block'">Does
+(100, 150, 200) have more red or more blue?</question>
+<answer id="a5">Answer: More blue</answer>
+
+<h2>Combining Coordinates and Colors</h2>
+<p>When we combine the coordinate and color concepts above, we can specify the
+color that the Pixel Quilt should make a specific pixel. For example, if we
+tell it to set the pixel at (1, 4) to (255, 255, 0) we get the following
+output.</p>
+
+TODO
+
+<p>One of the basic things we can do with the pixel quilt is exactly that, tell
+it what color to make a given pixel. This is done with the <b>set</b> function.
+To call set, we write the word set followed immediately by an open parenthesis,
+the arguments separated by commas, and then a closed parenthesis. This should
+be on a line by itself, optionally with a semicolon (;) at the end, looking
+something like this:</p>
+
+<code>set(argument1, argument2, …);</code>
+
+<p>The arguments to the <b>set</b> function are the coordinate and color just
+as we’ve discussed them in this tutorial. The coordinate and color do not get
+their own parentheses like we wrote them above but are combined as the
+arguments to the set function in the order x, y, r, g, b.</p>
+
+<code>set(x, y, r, g, b);</code>
+
+<p>To see an example of this in practice, copy the following code into the
+<a href="/programmer">Pixel Quilt Programmer</a> (pixelquilt.net/programmer).
+You can comment out any of the set statements by adding // to the beginning of
+the line and see how it affects the output.
+<h3>Example Code</h3>
+<codeblock>
+// Set the top left pixel to red
+set(0, 0, 255, 0, 0);
+// Set the pixel two to the right to green
+set(2, 0, 0, 255, 0);
+// Set the pixel in the fourth column and the seventh row to white
+set(3, 6, 255, 255, 255);
+</codeblock>
+<h2>Exercise</h2>
+<p>To demonstrate the concepts of this tutorial, write a Pixel Quilt script
+using the programmer that colors the top left corner of the grid yellow, the
+top right blue, the bottom left white, and the bottom right magenta.</p>
+</body>
