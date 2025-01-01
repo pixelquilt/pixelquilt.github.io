@@ -17,10 +17,19 @@ for more details about coordinates, or skip to the Colors section below.</p>
 
 <div>
     <canvas id="coords" width="201" height="201" style="background-color:#000"></canvas>
+    <div style="display:inline-block;">
+        <span style="width:6em;display:inline-block">Column</span>
+        <span id="column">0</span><br>
+        <span style="width:6em;display:inline-block">Row</span>
+        <span id="row">0</span><br>
+        <span style="width:6em;display:inline-block">Coordinate</span>
+        <span id="coord">(0, 0)</span><br>
+        <span style="height:70px;display:inline-block"></span>
+    </div>
     <script language="javascript">
         function coordclick(ev) {
-            let x = (ev.clientX / 25) | 0;
-            let y = (ev.clientY / 25) | 0;
+            let x = (ev.offsetX / 25) | 0;
+            let y = (ev.offsetY / 25) | 0;
             if (x < 0) x = 0;
             if (x >= 8) x = 7;
             if (y < 0) y = 0;
@@ -40,17 +49,8 @@ for more details about coordinates, or skip to the Colors section below.</p>
             }
         }
         document.querySelector("#coords").addEventListener("click", coordclick);
-        coordclick({clientX: 0, clientY: 0});
+        coordclick({offsetX: 0, offsetY: 0});
     </script>
-    <div style="display:inline-block;">
-        <span style="width:6em;display:inline-block">Column</span>
-        <span id="column">0</span><br>
-        <span style="width:6em;display:inline-block">Row</span>
-        <span id="row">0</span><br>
-        <span style="width:6em;display:inline-block">Coordinate</span>
-        <span id="coord">(0, 0)</span><br>
-        <span style="height:70px;display:inline-block"></span>
-    </div>
 </div>
 
 <p>The columns of a 32x32 Pixel Quilt are numbered starting at 0 on the left
