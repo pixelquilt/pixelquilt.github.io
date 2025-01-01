@@ -233,7 +233,35 @@ colors can be seen in the below diagram.</p>
 each have varying levels. Having more green than red gives a yellow-green tint
 while more red than green gives an orange tint. In addition, even the primary
 colors can be made darker by having them at less than full, and many more
-colors can be produced by combining levels of all three primary colors.</p>
+colors can be produced by combining levels of all three primary colors. Play
+with the sliders below to see what colors you can come up with.</p>
+
+<div>
+    <script language="javascript">
+        function setcolor() {
+            let r = document.querySelector("#redr").value;
+            let g = document.querySelector("#greenr").value;
+            let b = document.querySelector("#bluer").value;
+            document.querySelector("#red").innerText = r;
+            document.querySelector("#green").innerText = g;
+            document.querySelector("#blue").innerText = b;
+            document.querySelector("#color").style.backgroundColor = "rgb(" + r +", " + g + ", " + b + ")";
+        }
+    </script>
+    <canvas id="color" width="200" height="200" style="background-color:#000"></canvas>
+    <div style="display:inline-block;">
+        <span style="width:4em;display:inline-block">Red</span>
+        <input id="redr" type="range" min="0" max="255" value="0" onchange="setcolor()">
+        <span id="red">0</span><br>
+        <span style="width:4em;display:inline-block">Green</span>
+        <input id="greenr" type="range" min="0" max="255" value="0" onchange="setcolor()">
+        <span id="green">0</span><br>
+        <span style="width:4em;display:inline-block">Blue</span>
+        <input id="bluer" type="range" min="0" max="255" value="0" onchange="setcolor()">
+        <span id="blue">0</span><br>
+        <span style="height:70px;display:inline-block"></span>
+    </div>
+</div>
 
 <p>On the pixel quilt, as with many computer systems, colors are represented
 with three numbers r, g, and b representing the levels for red, green, and
@@ -340,25 +368,28 @@ output.</p>
 
 <p>One of the basic things we can do with the pixel quilt is exactly that, tell
 it what color to make a given pixel. This is done with the <b>set</b> function.
-To call set, we write the word set followed immediately by an open parenthesis,
-the arguments separated by commas, and then a closed parenthesis. This should
-be on a line by itself, optionally with a semicolon (;) at the end, looking
-something like this:</p>
+To set a pixel on the quilt, we write the word <code>set</code> followed
+immediately by an open parenthesis, what we want the quilt to set, and then a
+closed parenthesis. This should be on a line by itself, optionally with a
+semicolon (;) at the end, looking something like this:</p>
 
-<code>set(argument1, argument2, …);</code>
+<code>set(what we want to set);</code>
 
-<p>The arguments to the <b>set</b> function are the coordinate and color just
-as we’ve discussed them in this tutorial. The coordinate and color do not get
-their own parentheses like we wrote them above but are combined as the
-arguments to the set function in the order x, y, r, g, b.</p>
+<p>What goes inside the parentheses for the <b>set</b> function are the
+coordinate and color just as we’ve discussed them in this tutorial. The
+coordinate and color do not get their own parentheses like we wrote them above
+but are combined in a single list in the order x, y, r, g, b.</p>
 
 <code>set(x, y, r, g, b);</code>
 
 <p>To see an example of this in practice, copy the following code into the
 <a href="/programmer">Pixel Quilt Programmer</a> (pixelquilt.net/programmer).
 You can comment out any of the set statements by adding // to the beginning of
-the line and see how it affects the output.
+the line and see how it affects the output.</p>
 <h3>Example Code</h3>
+<p>Note that if you put <code>//</code> in the code, the rest of that line is
+for humans only, the computer will ignore it. This is called a comment and can
+help you keep track of what your code is doing, or explain it to others.</p>
 <codeblock>// Set the top left pixel to red
 set(0, 0, 255, 0, 0);
 // Set the pixel two to the right to green
