@@ -176,6 +176,7 @@ function onWorkerMessage(ev) {
   	setImpl(data.x, data.y, data.r, data.g, data.b);
   } else if (data.cmd == "draw") {
     if (currentData) {
+      let ctx = document.querySelector("#output").getContext('2d');
       ctx.putImageData(currentData, 0, 0);
     }
   } else if (data.cmd == "error") {
