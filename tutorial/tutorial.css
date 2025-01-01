@@ -42,7 +42,7 @@ codeblock {
 question {
     display: block;
     color: #b73;
-    width: 100%;
+    width: calc(100% - 10px);
     border: 1px solid #b73;
     padding: 5px;
     margin-top: 10px;

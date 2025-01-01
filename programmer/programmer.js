@@ -6,6 +6,7 @@ const baseWorkerCodeBefore = "\n\
   }\n\
   \n\
   async function wait(seconds) {\n\
+    postMessage({cmd: 'draw'});\n\
   	if (seconds > 0) {\n\
     	await new Promise(resolve => setTimeout(resolve, seconds * 1000));\n\
     }\n\
@@ -145,6 +146,7 @@ let pendingAbort = false;
 let running = false;
 let worker = null;
 let codeBlob = null;
+let currentData = null;
 
 class AbortError extends Error {
   constructor() {
@@ -152,16 +154,30 @@ class AbortError extends Error {
   }
 }
 
+function clampint(x) {
+  x = x | 0;
+  if (x < 0) return 0;
+  if (x > 255) return 255;
+  return x;
+}
+
 function setImpl(x, y, r, g, b) {
-	let ctx = document.querySelector("#output").getContext('2d');
-  ctx.fillStyle = "rgb(" + r + ", " + g + ", " + b + ")";
-  ctx.fillRect(x, y, 1, 1);
+  if (currentData) {
+    let offset = 4 * (x + videoWidth * h);
+    currentData.data[offset] = clampint(r);
+    currentData.data[offset + 1] = clampint(g);
+    currentData.data[offset + 2] = clampint(b);
+  }
 }
 
 function onWorkerMessage(ev) {
 	let data = ev.data;
   if (data.cmd == "set") {
   	setImpl(data.x, data.y, data.r, data.g, data.b);
+  } else if (data.cmd == "draw") {
+    if (currentData) {
+      ctx.putImageData(currentData, 0, 0);
+    }
   } else if (data.cmd == "error") {
     document.querySelector("#error").innerText = "Error running code: " + data.str;
     document.querySelector("#output").style.display = "none";
@@ -171,8 +187,13 @@ function onWorkerMessage(ev) {
     document.querySelector("#output").style.display = "block";
     document.querySelector("#error").style.display = "none";
     let ctx = document.querySelector("#output").getContext('2d');
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, videoWidth, videoHeight);
+    if (currentData) {
+      ctx.putImageData(currentData, 0, 0);
+    }
+    currentData = ctx.createImageData(videoWidth, videoHeight);
+    for (let i = 0; i < 4 * videoWidth * videoHeight; ++i) {
+      currentData.data[i] = (i % 4 == 3) ? 255 : 0;
+    }
   }
 }
 
