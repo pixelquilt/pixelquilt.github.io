@@ -163,7 +163,7 @@ function clampint(x) {
 
 function setImpl(x, y, r, g, b) {
   if (currentData) {
-    let offset = 4 * (x + videoWidth * h);
+    let offset = 4 * (x + videoWidth * y);
     currentData.data[offset] = clampint(r);
     currentData.data[offset + 1] = clampint(g);
     currentData.data[offset + 2] = clampint(b);
