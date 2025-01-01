@@ -7,8 +7,51 @@
 <h1>Pixel Quilt Tutorial 1: Coordinates and Colors</h1>
 <h2>Coordinates</h2>
 <p>The Pixel Quilt, like many displays, is divided into evenly spaced columns
-and rows of pixels. Pixel Quilts come in various sizes, but for this tutorial
-we’ll assume a 32x32 quilt.</p>
+and rows of pixels. Pixel Quilts come in various sizes, so it is important to
+know what size quilt you are working with to use the right coordinates.</p>
+
+<p>Before we get into the details, feel free to play around with this coordinate
+picker for an 8x8 quilt. Once you get the hang of it, try to guess what the
+coordinate will be before you click and then see if you are right. Then read on
+for more details about coordinates, or skip to the Colors section below.</p>
+
+<div>
+    <canvas id="coords" width="201" height="201" style="background-color:#000"></canvas>
+    <script language="javascript">
+        function coordclick(ev) {
+            let x = (ev.clientX / 25) | 0;
+            let y = (ev.clientY / 25) | 0;
+            if (x < 0) x = 0;
+            if (x >= 8) x = 7;
+            if (y < 0) y = 0;
+            if (y >= 8) y = 7;
+            document.querySelector("#column").innerText = x;
+            document.querySelector("#row").innerText = y;
+            document.querySelector("#coord").innerText = "(" + x + ", " + y + ")";
+            let ctx = document.querySelector("#coords").getContext("2d");
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0, 0, 200, 200);
+            ctx.fillStyle = "#ff0";
+            ctx.fillRect(25 * x, 25 * y, 25, 25);
+            ctx.fillStyle = "#666";
+            for (let i = 0; i <= 8; ++i) {
+                ctx.fillRect(25 * i, 0, 1, 201);
+                ctx.fillRect(0, 25 * i, 201, 1);
+            }
+        }
+        document.querySelector("#coords").addEventListener("click", coordclick);
+        coordclick({clientX: 0, clientY: 0});
+    </script>
+    <div style="display:inline-block;">
+        <span style="width:6em;display:inline-block">Column</span>
+        <span id="column">0</span><br>
+        <span style="width:6em;display:inline-block">Row</span>
+        <span id="row">0</span><br>
+        <span style="width:6em;display:inline-block">Coordinate</span>
+        <span id="coord">(0, 0)</span><br>
+        <span style="height:70px;display:inline-block"></span>
+    </div>
+</div>
 
 <p>The columns of a 32x32 Pixel Quilt are numbered starting at 0 on the left
 and ending at 31 on the right, like in the diagram below.</p>
