@@ -1,0 +1,198 @@
+<head>
+    <title>Pixel Quilt Tutorial 3: Variables</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="tutorial.css">
+    <link rel="stylesheet" href="/programmer/embedded.css">
+</head>
+<body>
+<h1>Pixel Quilt Tutorial 3: Variables</h1>
+<h2>Leading by Example</h2>
+<p>Like in the previous tutorial, we're going to start off with some examples
+that you can play with, then we'll go into the explanations.</p>
+<editor>
+x = 3;
+y = 4;
+set(x, y, 255, 0, 0);
+</editor>
+<editor>
+x = 3;
+set(x, 1, 255, 255, 0);
+set(x, 2, 255, 255, 0);
+set(x, 3, 255, 255, 0);
+x = 4;
+set(x, 1, 128, 0, 255);
+set(x, 2, 128, 0, 255);
+set(x, 3, 128, 0, 255);
+</editor>
+<editor>
+red = 255;
+green = 255;
+blue = 0;
+row = 2;
+column = 4;
+set(column, row, red, green, blue);
+</editor>
+<editor>
+speed = 1/5;
+set(0, 0, 255, 0, 0);
+wait(speed);
+set(0, 0, 0, 0, 0);
+wait(speed);
+</editor>
+<h2>X Marks the Value</h2>
+<p>If you look at the above examples you may notice that anywhere we would
+write a number in previous tutorials, we can also write a letter or word, as
+long as we tell the computer beforehand what that letter or word should mean.
+These letters or words are called <b>variables</b>.</p>
+<p>Variables act as placeholders when we don't want to (or can't) write a value
+directly in our code. One common reason to use variables is to not have to
+repeat something, especially if we want to change it easily. Take the following
+example, where without a variable we would have to write the color on each line
+and if we wanted to make the color a little different we would have to change
+it in a lot of places:</p>
+<editor>
+// Try changing these to make the dot orange or purple
+red = 0;
+green = 128;
+blue = 255;
+set(3, 2, red, green, blue);
+set(4, 2, red, green, blue);
+set(2, 3, red, green, blue);
+set(3, 3, red, green, blue);
+set(4, 3, red, green, blue);
+set(5, 3, red, green, blue);
+set(2, 4, red, green, blue);
+set(3, 4, red, green, blue);
+set(4, 4, red, green, blue);
+set(5, 4, red, green, blue);
+set(3, 5, red, green, blue);
+set(4, 5, red, green, blue);
+</editor>
+<question onclick="document.querySelector('#a1').style.display='block'">In the
+following code, what coordinate will get turned yellow?<br>
+<code>x = 2</code><br>
+<code>set(x, 5, 255, 255, 0)</code>
+</question>
+<answer id="a1">Answer: (2, 5)</answer>
+<question onclick="document.querySelector('#a2').style.display='block'">What
+do we need to add to the beginning of this code to make it turn the pixel
+blue?<br>
+<code>r = 0;</code><br>
+<code>g = 0;</code><br>
+<code>set(2, 2, r, g, b)</code>
+</question>
+<answer id="a2">Answer: b = 255;</answer>
+<h2>Variables that, well, vary!</h2>
+<p>In one of the examples at the top, the variable x is given a value twice.
+First it is told to be 3, then it is told to be 4. This is because when you use
+a variable, the value that gets used is the latest one it has been given. If
+you give a variable a new value, it only applies for the things that run after
+(below) the line that changed it.</p>
+<p>In the below code for example, the orange highlighted lines have a value of
+2 for x, while the blue highlighted lines have a value of 5 for x:</p>
+<code>x = 2;</code><br>
+<code style="background-color: #fc6;">set(x, 1, 255, 255, 255);</code><br>
+<code style="background-color: #fc6;">set(x, 2, 255, 255, 255);</code><br>
+<code>x = 5;</code><br>
+<code style="background-color: #69f;">set(x, 1, 255, 0, 0);</code><br>
+<code style="background-color: #69f;">set(x, 2, 255, 0, 0);</code><br>
+<question onclick="document.querySelector('#a3').style.display='block'">In the
+following code, what is the coordinate of the pixel that gets turned blue?<br>
+<code>x = 0;</code><br>
+<code>x = 1;</code><br>
+<code>set(x, 3, 255, 0, 0);</code><br>
+<code>x = 2;</code><br>
+<code>set(x, 3, 0, 0, 255);</code><br>
+<code>x = 3;</code><br>
+<code>set(x, 3, 0, 255, 0);</code>
+</question>
+<answer id="a3">Answer: (2, 3)</answer>
+<h2>Math with Variables</h2>
+<p>In the last tutorial we discovered that you can put math anywhere where you
+would put a number. That includes when you are telling the quilt what a
+variable should represent. Instead of putting <code>x = 3</code> we could just
+as easily put <code>x = 2 + 1</code> or any other mathematical expression.</p>
+<code>x = 1 + 3;</code><br>
+<code>y = 2 * 2;</code><br>
+<code>r = 255 - 100;</code><br>
+<code>g = 255 / 4;</code><br>
+<code>b = 255 / 5 + 100;</code><br>
+<code>set(x, y, r, g, b);</code><br>
+<p>In addition to using math to tell the quilt the value of a variable, we can
+also use variables to represent the numbers used in math, as long as the quilt
+already knows the values of those variables. For example, if we want the
+<code>y</code> variable to be one more than the <code>x</code> variable, we can
+write <code>y = x + 1;</code>.</p>
+<p>Take this example, where we use math with variables to set a color from a
+single number:</p>
+<editor>
+// Change this to go from blue to red.
+redness = 64;
+r = redness;
+b = 255 - redness;
+set(0, 0, r, 0, b);
+// Change this to make a brighter or darker orange.
+brightness = 1/2;
+r = 255 * brightness;
+g = 128 * brightness;
+set(7, 0, r, g, 0);
+</editor>
+<question onclick="document.querySelector('#a4').style.display='block'">What
+is the value of x after this code?<br>
+<code>y = 5;</code><br>
+<code>x = y - 2;</code>
+</question>
+<answer id="a4">Answer: 3</answer>
+<question onclick="document.querySelector('#a5').style.display='block'">Bonus:
+What is the value of x after this code?<br>
+<code>x = 2;</code><br>
+<code>y = 3 * x;</code><br>
+<code>x = y - 2;</code>
+</question>
+<answer id="a5">Answer: 4</answer>
+<h2>What is in a (Variable) Name?</h2>
+<p>In this tutorial we've used various letters and words as the names of
+variables, so can we use anything we want? Almost. There are a few limitations
+and important notes about variable naming to keep in mind. If something doesn't
+seem to be working or you're getting an error, try changing the variable name
+to see if that helps.</p>
+<ul>
+<li><b>Uppercase and lowercase</b>
+<ul><li>Uppercase and lowercase versions of the same letter are not the same
+when it comes to variable names. The variable <code>R</code> and the variable
+<code>r</code> are different and have nothing to do with each other. Similarly,
+<code>Adam</code>, <code>adam</code>, and <code>aDam</code> are all different
+variables.</li></ul></li>
+<li><b>Numbers</b>
+<ul><li>Variable names can have numbers in them, but not at the start. That is,
+you can have a variable named <code>cat1</code> but not <code>1cat</code>.
+Trying to use <code>1cat</code> as a variable will cause an error trying to run
+your code.</li></ul></li>
+<li><b>Special names</b>
+<ul><li>Some names have special meaning to the quilt and cannot be used in
+variables, or in some cases using them will make the code do strange things.
+This includes various words that are reserved parts of JavaScript or the web
+browser including <code>if</code>, <code>for</code>, <code>while</code>,
+<code>do</code>, <code>switch</code>, <code>new</code>, <code>class</code>,
+<code>let</code>, <code>var</code>, <code>const</code>, <code>window</code>,
+<code>document</code>, and others, as well as <code>set</code>, and
+<code>wait</code>, which already mean things to the quilt.</li></ul></li>
+<li><b>Other characters</b><ul><li>
+Besides letters and numbers, variables can usually only contain one other
+character, the underscore (<code>_</code>). Any other characters will not be
+considered part of the name and will likely not do what you expect. People
+often use underscores to separate words in a variable name, since spaces also
+cannot be used. For example <code>a_variable_with_multiple_words</code>.
+</li></ul></li>
+</ul>
+<h2>Exercise</h2>
+Make a program where you can change the color of a shape or animation by only
+changing variables at the top. Here is some code to start:
+<editor>
+r = 255;
+g = 128;
+b = 0;
+// Draw a shape or make an animation.
+</editor>
+</body>
+<script src="/programmer/embedded.js"></script>
