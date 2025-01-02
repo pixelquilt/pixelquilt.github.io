@@ -38,6 +38,61 @@ for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
 }
 </editor>
 <h2>Doing Things Multiple Times</h2>
-<p></p>
+<p>Sometimes we want our code to do something more than once. We can tell it to
+do the same thing over and over again, but it gets annoying and the code
+becomes long and hard to read. This is where loops come in. Loops allow us to
+do something multiple times, often with slight variations each time.</p>
+<p>Starting off simple, let's say we wanted to make a pixel blink 4 times and
+then stay solid for a bit. We could write this like this example:</p>
+<editor>
+set(0, 0, 255, 0, 0);
+wait(1/4);
+set(0, 0, 0, 0, 0);
+wait(1/4);
+set(0, 0, 255, 0, 0);
+wait(1/4);
+set(0, 0, 0, 0, 0);
+wait(1/4);
+set(0, 0, 255, 0, 0);
+wait(1/4);
+set(0, 0, 0, 0, 0);
+wait(1/4);
+set(0, 0, 255, 0, 0);
+wait(1/4);
+set(0, 0, 0, 0, 0);
+wait(1/4);
+set(0, 0, 255, 0, 0);
+wait(5);
+set(0, 0, 0, 0, 0);
+wait(1);
+</editor>
+<p>But that's a lot of copying of the code and it takes a lot of reading to see
+that it is just doing the same thing 4 times in a row. We could write the same
+thing instead like below:</p>
+<editor>
+for (i of [1, 2, 3, 4]) {
+    set(0, 0, 255, 0, 0);
+    wait(1/4);
+    set(0, 0, 0, 0, 0);
+    wait(1/4);
+}
+set(0, 0, 255, 0, 0);
+wait(5);
+set(0, 0, 0, 0, 0);
+wait(1);
+</editor>
+<p>If you watch the output, they do the same thing, but the second one is a
+lot shorter. That's because blinking the pixel on and off each of the 4 times
+is exactly the same, so we can just tell it to do it 4 times.</p>
+<p>We can make it repeat any number of times by changing how many numbers we
+list in between the <code>[</code> and <code>]</code> in the line with
+<code>for</code>. Everything between the <code>{</code> and <code>}</code> gets
+repeated that many times.</p>
+<question answer="3">How many times will the loop run in this code?<br>
+<code>for (i of [1, 2, 3]) {</code><br>
+<code>&nbsp;&nbsp;wait(1);</code><br>
+<code>}</code></question>
+
 </body>
 <script src="/programmer/embedded.js"></script>
+<script src="questions.js"></script>
