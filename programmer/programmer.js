@@ -148,12 +148,6 @@ let worker = null;
 let codeBlob = null;
 let currentData = null;
 
-class AbortError extends Error {
-  constructor() {
-  	super();
-  }
-}
-
 function clampint(x) {
   x = x | 0;
   if (x < 0) return 0;

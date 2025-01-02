@@ -2,6 +2,7 @@
     <title>Pixel Quilt Tutorial 1: Coordinates and Colors</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="tutorial.css">
+    <link rel="stylesheet" href="/programmer/embedded.css">
 </head>
 <body>
 <h1>Pixel Quilt Tutorial 1: Coordinates and Colors</h1>
@@ -433,15 +434,17 @@ the line and see how it affects the output.</p>
 <p>Note that if you put <code>//</code> in the code, the rest of that line is
 for humans only, the computer will ignore it. This is called a comment and can
 help you keep track of what your code is doing, or explain it to others.</p>
-<codeblock>// Set the top left pixel to red
+<editor width="8" height="8">
+// Set the top left pixel to red
 set(0, 0, 255, 0, 0);
 // Set the pixel two to the right to green
 set(2, 0, 0, 255, 0);
 // Set the pixel in the fourth column and the seventh row to white
 set(3, 6, 255, 255, 255);
-</codeblock>
+</editor>
 <h2>Exercise</h2>
 <p>To demonstrate the concepts of this tutorial, write a Pixel Quilt script
 using the programmer that colors the top left corner of the grid yellow, the
 top right blue, the bottom left white, and the bottom right magenta.</p>
 </body>
+<script src="programmer/embedded.js"></script>

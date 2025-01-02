@@ -1,0 +1,51 @@
+.editor button {
+    margin-bottom: 5px;
+    font-family: monospace;
+    font-size: 20px;
+    background-color: #eeddcc;
+    border: 1px solid #cc9966;
+    display:block;
+  }
+  .editor button:hover {
+    background-color: #ddbb99;
+  }
+  .editor button:active {
+    background-color: #cc9966;
+    color: #ffffff;
+  }
+    
+  div.editor {
+    display: inline-block;
+    width: max(calc(100% - 15em), 10em);
+    height: 15em;
+  }
+  .editor textarea {
+    width: calc(100% - 10px);
+    height: calc(100% - 35px);
+    resize: none;
+    background-color: #333;
+    color: #DDD2bb;
+    font-family: "Roboto Mono", monospace;
+  }
+  
+  div.output {
+    padding-top: 35px;
+    vertical-align: top;
+    font-family: monospace;
+    display: inline-block;
+    width: 15em;
+    height: 15em;
+  }
+  .output canvas {
+    height: 15em;
+    width: 15em;
+    border: 1px solid #000;
+    image-rendering: pixelated;
+  }
+  
+  .error {
+    display: none;
+    color: #990000;
+    overflow-y: auto;
+    width: 15em;
+  }
