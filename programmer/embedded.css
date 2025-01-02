@@ -29,8 +29,6 @@
   }
   
   div.output {
-    padding-top: 35px;
-    vertical-align: top;
     font-family: monospace;
     display: inline-block;
     width: 15em;
