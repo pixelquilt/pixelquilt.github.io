@@ -92,6 +92,61 @@ repeated that many times.</p>
 <code>for (i of [1, 2, 3]) {</code><br>
 <code>&nbsp;&nbsp;wait(1);</code><br>
 <code>}</code></question>
+<h2>Doing Things, but Differently</h2>
+<p>The real power of loops comes not when you do the same thing multiple times,
+but when you do them slightly differently each time. You may have noticed that
+there is what looks like a variable in the loop statement
+<code>for (x of [1, 2, 3]) {</code>. That's because there is, <code>x</code> is
+a variable.</p>
+<p>What's important about the variable in the loop though, is that each time
+the loop repeats it will take a different value. The loop will run once for
+each value you put between <code>[</code> and <code>]</code>, with
+<code>x</code> set to the next value in the list each time it runs. This means
+we can take the same blinking example from above but use <code>i</code> to make
+it different each time it runs.</p>
+<editor>
+for (i of [1, 2, 3, 4]) {
+    set(i, 0, 255, 0, 0);
+    wait(1/4);
+    set(i, 0, 0, 0, 0);
+    wait(1/4);
+}
+set(0, 0, 255, 0, 0);
+wait(5);
+set(0, 0, 0, 0, 0);
+wait(1);
+</editor>
+<p>What's more, the numbers in the list don't have to be in order, or all of
+the numbers between two values. You can write whatever numbers you want and
+even repeat them if you want. Let's take the same blinking example and make it
+move around differently:</p>    
+<editor>
+for (i of [3, 2, 1, 0, 1, 2, 3, 5, 7]) {
+    set(i, 0, 255, 0, 0);
+    wait(1/4);
+    set(i, 0, 0, 0, 0);
+    wait(1/4);
+}
+set(0, 0, 255, 0, 0);
+wait(5);
+set(0, 0, 0, 0, 0);
+wait(1);
+</editor>
+<question answer="4">
+How many pixels will be turned on after this loops runs?<br>
+<code>for (x of [0, 2, 4, 6]) {</code><br>
+<code>&nbsp;&nbsp;set(x, 0, 255, 255, 0);</code><br>
+<code>}</code>
+</question>
+<question answer="(3, 2)">
+Which coordinate will be the last one to turn on in this loop?<br>
+<code>for (x of [7, 1, 5, 3]) {</code><br>
+<code>&nbsp;&nbsp;set(x, 0, 0, 128, 255);</code><br>
+<code>&nbsp;&nbsp;wait(1);</code><br>
+<code>}</code>
+</question>
+<h2>Nested Loops</h2>
+
 
 </body>
 <script src="/programmer/embedded.js"></script>
