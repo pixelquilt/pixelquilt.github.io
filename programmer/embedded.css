@@ -16,8 +16,8 @@
     
   div.editor {
     display: inline-block;
-    width: max(calc(100% - 15em), 10em);
-    height: 15em;
+    width: max(calc(100% - 15rem), 10rem);
+    height: 15rem;
   }
   .editor textarea {
     width: calc(100% - 10px);
@@ -31,12 +31,12 @@
   div.output {
     font-family: monospace;
     display: inline-block;
-    width: 15em;
-    height: 15em;
+    width: 15rem;
+    height: 15rem;
   }
   .output canvas {
-    height: 15em;
-    width: 15em;
+    height: 15rem;
+    width: 15rem;
     border: 1px solid #000;
     image-rendering: pixelated;
   }
@@ -45,5 +45,5 @@
     display: none;
     color: #990000;
     overflow-y: auto;
-    width: 15em;
+    width: 15rem;
   }
