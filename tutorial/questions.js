@@ -5,7 +5,7 @@ class Question {
         let answerText = elem.getAttribute("answer");
         this.eAnswer = document.createElement("answer");
         this.eAnswer.innerText = "Answer: " + answerText;
-        elem.insertAdjacentElement(this.eAnswer);
+        elem.insertAdjacentElement("afterend", this.eAnswer);
         elem.addEventListener("click", this.toggle.bind(this));
     }
 
