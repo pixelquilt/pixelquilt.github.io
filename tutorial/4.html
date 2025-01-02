@@ -12,6 +12,7 @@ details</p>
 <editor>
 for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
     set(x, 0, 255, 0, 0);
+    wait(1/8);
 }
 </editor>
 <editor>
@@ -141,13 +142,103 @@ How many pixels will be turned on after this loops runs?<br>
 <question answer="(3, 2)">
 Which coordinate will be the last one to turn on in this loop?<br>
 <code>for (x of [7, 1, 5, 3]) {</code><br>
-<code>&nbsp;&nbsp;set(x, 0, 0, 128, 255);</code><br>
+<code>&nbsp;&nbsp;set(x, 2, 0, 128, 255);</code><br>
 <code>&nbsp;&nbsp;wait(1);</code><br>
 <code>}</code>
 </question>
 <h2>Nested Loops</h2>
-
-
+<p>While using a loop can be powerful, using more than one can be much more
+powerful and lead to code in a few lines that would otherwise take
+hundreds.</p>
+<p>This is because loops don't just have to contain <code>set</code> and
+<code>wait</code> lines, but can contain additional loops. Doing this is called
+<b>nested loops</b>.</p>
+<p>In a basic example of nested loops, we can take the example where we made
+the blinking pixel move and make it repeat multiple times before staying still:
+</p>
+<editor>
+for (repeat of [1, 2, 3]) {
+    for (i of [1, 2, 3, 4]) {
+        set(i, 0, 255, 0, 0);
+        wait(1/4);
+        set(i, 0, 0, 0, 0);
+        wait(1/4);
+    }
+}
+set(0, 0, 255, 0, 0);
+wait(5);
+set(0, 0, 0, 0, 0);
+wait(1);
+</editor>
+<p>What's important to note is that we used a <i>different</i> variable in the
+nested loop, that is, the loop inside the second loop. The outer loop uses
+<code>repeat</code> as the variable while the inner loop uses <code>i</code>.
+</p>
+<p>Since we use different variable names for each loop, we can also use each
+variable inside the loops to make the code do something different each time.
+When you have nested loop like</p>
+<code>for (outer of [1, 2, 3]) {</code><br>
+<code>&nbsp;&nbsp;for (inner of [4, 5, 6]) {</code><br>
+<p>it is important to note that each time <code>outer</code> changes,
+<code>inner</code> will go through the full list of values for that loop. For
+this loop it means whatever is inside will run 9 times with the following
+values in order:</p>
+<ul>
+<li><code>outer = 1, inner = 4</code></li>
+<li><code>outer = 1, inner = 5</code></li>
+<li><code>outer = 1, inner = 6</code></li>
+<li><code>outer = 2, inner = 4</code></li>
+<li><code>outer = 2, inner = 5</code></li>
+<li><code>outer = 2, inner = 6</code></li>
+<li><code>outer = 3, inner = 4</code></li>
+<li><code>outer = 3, inner = 5</code></li>
+<li><code>outer = 3, inner = 6</code></li>
+</ul>
+<p>You can see an example of using this for something useful below:</p>
+<editor>
+// Sweep the rows
+for (row of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    // Sweep the columns
+    for (column of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        set(colum, row, 0, 128, 32);
+        wait(1/8);
+    }
+}
+</editor>
+<p>That example has a <code>wait</code> in the loop so that you can see how the
+loops work, but if you remove that line you'll see this is an easy way to make
+the whole display a single color using only 5 lines of code rather than 64
+individual <code>set</code> statements, one for each pixel.</p>
+<question answer="6">
+How many times will the <code>wait</code> line run in this code?<br>
+<code>for (outer of [1, 2]) {</code><br>
+<code>&nbsp;&nbsp;for (inner of [1, 3, 5]) {</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;wait(1);</code><br>
+<code>&nbsp;&nbsp;}</code><br>
+<code>}</code>    
+</question>
+<question answer="(3, 1)">
+Will the coordinate (3, 1) or (1, 2) be set first in this code?<br>
+<code>for (y of [1, 2, 3]) {</code><br>
+<code>&nbsp;&nbsp;for (x of [1, 2, 3]) {</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;set(x, y, 255, 255, 255);</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;wait(1);</code><br>
+<code>&nbsp;&nbsp;}</code><br>
+<code>}</code>    
+</question>
+<h2>Exercise</h2>
+<p>Recall the exercise from the animation tutorial where you made a line move
+across the display. Now use loops to make an animation that moves a whole row
+from the top to the bottom of the display. Here's some starter code that colors
+a row.</p>
+<editor>
+r = 255;
+g = 145;
+b = 0;
+for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    set(x, 0, r, g, b);
+}
+</editor>
 </body>
 <script src="/programmer/embedded.js"></script>
 <script src="questions.js"></script>
