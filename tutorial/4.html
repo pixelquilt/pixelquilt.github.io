@@ -1,0 +1,43 @@
+<head>
+    <title>Pixel Quilt Tutorial 4: Loops</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="tutorial.css">
+    <link rel="stylesheet" href="/programmer/embedded.css">
+</head>
+<body>
+<h1>Pixel Quilt Tutorial 4: Loops</h1>
+<h2>Leading by Example</h2>
+<p>Let's start with some examples that make use of loops and then get into the
+details</p>
+<editor>
+for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    set(x, 0, 255, 0, 0);
+}
+</editor>
+<editor>
+for (b of [0, 50, 100, 150, 200, 250]) {
+    set(2, 2, 0, 0, b);
+    wait(1/2);
+}
+</editor>
+<editor>
+for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    for (y of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        set(x, y, 0, 128, 255);
+    }
+}
+</editor>
+<editor>
+for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    for (y of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        r = x * 15;
+        g = y * 15;
+        b = r + g;
+        set(x, y, r, g, b);
+    }
+}
+</editor>
+<h2>Doing Things Multiple Times</h2>
+<p></p>
+</body>
+<script src="/programmer/embedded.js"></script>
