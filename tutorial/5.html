@@ -1,0 +1,50 @@
+<head>
+    <title>Pixel Quilt Tutorial 5: Conditions</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="tutorial.css">
+    <link rel="stylesheet" href="/programmer/embedded.css">
+</head>
+<body>
+<h1>Pixel Quilt Tutorial 5: Conditions</h1>
+<h2>Leading by Example</h2>
+<editor>
+r = 0;
+g = 128;
+b = 255;
+for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    if (x > 4) {
+        r = 128;
+        g = 0;
+    }
+    set(x, 0, r, g, b);
+}
+</editor>
+<editor>
+for (i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
+    // a % b gives the remainder when dividing a by b
+    // a % 2 is 1 if a is odd and 0 if a is even
+    if (a % 2 > 0) {
+        set(0, 0, 255, 255, 255);
+    } else {
+        set(0, 0, 0, 0, 0);
+    }
+    wait(1/2);
+}
+wait(4);
+</editor>
+<editor>
+for (y of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        if (x > y) {
+            set(x, y, x * 16, y * 16, (x + y) * 16);
+        } else {
+            set(x, y, 255 - x * 16, 255 - y * 16, 255 - (x + y) * 16);
+        }
+    }
+}
+</editor>
+<h2>What If?</h2>
+
+</body>
+<script src="/programmer/embedded.js"></script>
+<script src="questions.js"></script>
