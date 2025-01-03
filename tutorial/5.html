@@ -12,7 +12,7 @@ r = 0;
 g = 128;
 b = 255;
 for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
-    if (x > 4) {
+    if (x >= 4) {
         r = 128;
         g = 0;
     }
@@ -23,7 +23,7 @@ for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
 for (i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
     // a % b gives the remainder when dividing a by b
     // a % 2 is 1 if a is odd and 0 if a is even
-    if (a % 2 > 0) {
+    if (i % 2 > 0) {
         set(0, 0, 255, 255, 255);
     } else {
         set(0, 0, 0, 0, 0);
@@ -43,7 +43,129 @@ for (y of [0, 1, 2, 3, 4, 5, 6, 7]) {
     }
 }
 </editor>
+<editor>
+for (y of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        if (x > y || x >= 4) {
+            set(x, y, x * 16, y * 16, (x + y) * 16);
+        } else {
+            set(x, y, 255 - x * 16, 255 - y * 16, 255 - (x + y) * 16);
+        }
+    }
+}
+</editor>
 <h2>What If?</h2>
+<p>Especially when it comes to loops, there are cases when we sometimes want to
+do something and sometimes don't. Take the first example, where we want a line
+that changes color halfway through. We could make two loops, one for the first
+half of the line and one for the second half, but we don't need to. Instead we
+can add a <b>conditional</b>.</p>
+<p>Conditionals are lines that tell the quilt to do something only if a
+<b>condition</b> is true. In the case of the loop in our example, we use a
+<b>comparison</b> as a condition to tell the quilt to change the values of
+<code>r</code> and <code>g</code> <i>only</i> if x is at least 4.</p>
+<p>Conditionals most commonly use comparisons, with common comparisons being
+ones you may have seen in math class:</p>
+<ul>
+<li><code>a &lt; b</code><ul><li>
+The condition is true if the value of a (or whatever is to the left of the
+<code>&lt;</code>) is less than (smaller than) b (or whatever is to the
+right of the <code>&gt;</code>).
+</li></ul></li>
+<li><code>a &gt; b</code><ul><li>
+The condition is true if the value of a is greater than (larger than) b.
+</li></ul></li>
+<li><code>a &lt;= b</code><ul><li>
+The condition is true is the value of a is less than or equal to (the same as)
+the value of b.
+</li></ul></li>
+<li><code>a &gt;= b</code><ul><li>
+The condition is true is the value of a is greater than or equal to the value
+of b.
+</li></ul></li>
+<li><code>a == b</code><ul><li>
+The condition is true if a and b hold the same value.
+</li><li>
+Note that you may be tempted to use <code>a = b</code>, but this would set the
+value of a to the value stored in b, not compare the two of them.
+</li></ul></li>
+<li><code>a != b</code><ul><li>
+The condition is true if a and b hold different values.
+</li></ul></li>
+</ul>
+<question answer="3 > 1">
+Which of these conditions would be considered true?<br>
+<code>2 == 4</code><br>
+<code>4 &gt;= 5</code><br>
+<code>3 &gt; 1</code><br>
+<code>3 != 3</code></question>
+<question answer="2">
+Which value of <code>x</code> would make the condition <code>x &lt; 3</code>
+true?<br>
+<code>2</code><br>
+<code>3</code><br>
+<code>4</code>
+</question>
+
+<h2>What Else?</h2>
+<p>Sometimes you don't just want to do something or not do something, you want
+to do one thing or another. You could say <code>if (a == b)</code> and then
+follow it with another <code>if (a != b)</code>, but that gets cumbersome and
+complicated.</p>
+<p>Instead we can use an <b>else</b> block after the conditional. When you
+write</p>
+<code>if (a == b) {</code><br>
+<code>&nbsp;&nbsp;set(0, 0, 1, 2, 3);</code><br>
+<code>} else {</code><br>
+<code>&nbsp;&nbsp;set(4, 4, 1, 2, 3);</code><br>
+<code>}</code>
+<p>the lines between the first pair of <code>{</code> and <code>}</code> will
+run if the condition is true (a and b are the same), whereas the lines between
+the second pair (after the <code>else</code> will run if the condition was
+false (a and b are not the same.</p>
+<p>This allows us to easily write either-or logic like the second example at
+the top where we set the pixel to white on odd numbers and black on even ones.
+</p>
+<question answer="When x is less than 4">
+If we have a condition that checks if <code>x >= 4</code>, when will the else
+block run?
+</question>
+
+<h2>This, That, and the Other Thing</h2>
+<p>While you can nest conditionals like the nested loops for the previous
+tutorial, sometimes you don't really want to. Sometimes you want to check
+whether multiple things are all true (if the store has my favorite candy
+<b>and</b> I have enough money), and sometimes you want to check whether any
+one of multiple things is true (if my brother is home <b>or</b> my sister is
+home).</p>
+<p>We can do this with our code by using two special <b>operators</b>,
+<code>&amp;&amp;</code>, and <code>||</code>. If we say <code>x &gt; 2
+&amp;&amp; y &lt; 8</code>, the condition will be true only if <b>both</b>
+<code>x</code> is greater than 2 <b>AND</b> <code>y</code> is less than 8.</p>
+<p>Similarly, <code>x &gt; 2 || y &lt; 8</code> would be true if either
+<code>x</code> is greater than 2 <b>OR</b> if <code>y</code> is less than 8
+(or both).</p>
+<p>This can be especially useful with nested loops, where we may want to check
+a comparison on the x coordinate and y coordinate at the same time.</p>
+<question answer="True">
+Is <code>3 &lt; 2 || 4 &lt;= 4</code> true or false?
+</question>
+<question answer="False">
+Is <code>1 &gt;= 3 && 3 == 3 </code> true or false?
+</question>
+
+<h2>Exercise</h2>
+<p>Starting with the code below that uses nested loops from the previous
+tutorial to color the entire display, change the code to use conditionals to
+give each of the four corners different colors without using any more loops or
+set statements outside of the loop.</p>
+<editor>
+for (y of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        set(x, y, 0, 128, 128);
+    }
+}
+</editor>
 
 </body>
 <script src="/programmer/embedded.js"></script>

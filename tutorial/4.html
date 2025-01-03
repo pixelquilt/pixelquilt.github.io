@@ -85,10 +85,25 @@ wait(1);
 <p>If you watch the output, they do the same thing, but the second one is a
 lot shorter. That's because blinking the pixel on and off each of the 4 times
 is exactly the same, so we can just tell it to do it 4 times.</p>
+<p>The trick here is that when the computer sees</p>
+<code>for (abc of [1, 2, 3]) {</code><br>
+<code>&nbsp;&nbsp;set(abc, abc, 0, 0, 255);</code><br>
+<code>}</code>
+<p>it is exactly the same as writing</p>
+<code>abc = 1;</code><br>
+<code>set(abc, abc, 0, 0, 255);</code><br>
+<code>abc = 2;</code><br>
+<code>set(abc, abc, 0, 0, 255);</code><br>
+<code>abc = 3;</code><br>
+<code>set(abc, abc, 0, 0, 255);</code>
+<p>Basically it does the copying and pasting of what's inside the
+<code>{</code> and <code>}</code> for us, each time setting a variable first.
+We don't have to use that variable, but we can as you'll see in the next
+section.</p>
 <p>We can make it repeat any number of times by changing how many numbers we
 list in between the <code>[</code> and <code>]</code> in the line with
 <code>for</code>. Everything between the <code>{</code> and <code>}</code> gets
-repeated that many times.</p>
+repeated that many times, just as if it were copied and pasted like above.</p>
 <question answer="3">How many times will the loop run in this code?<br>
 <code>for (i of [1, 2, 3]) {</code><br>
 <code>&nbsp;&nbsp;wait(1);</code><br>
@@ -229,8 +244,8 @@ Will the coordinate (3, 1) or (1, 2) be set first in this code?<br>
 <h2>Exercise</h2>
 <p>Recall the exercise from the animation tutorial where you made a line move
 across the display. Now use loops to make an animation that moves a whole row
-from the top to the bottom of the display. Here's some starter code that colors
-a row.</p>
+from the top to the bottom of the display with only one <code>set</code>
+statement. Here's some starter code that colors a row.</p>
 <editor>
 r = 255;
 g = 145;
