@@ -56,10 +56,186 @@ line(7, 255, 0, 255);
 what if we could teach it new things? Like how to draw a line, a box, a circle,
 or even a cat? That's where <b>functions</b> come in. Functions allow you to
 teach the quilt something new and put a name to it.</p>
+<p>There are many examples of this that you are likely already familiary with
+in real life. You may have learned how to do a jumping jack in PE class for
+example, or how to throw or kick a ball. Each of these requires you to do
+multiple steps. Throwing a ball for example you have to grasp the ball, raise
+your arm, move it forward, and release the ball. But once you learn how to do
+it, the teacher or coach can just tell you to throw a ball without going over
+the individual steps.</p>
+<p>Playing a musical instrument provides another good source of analogies.
+Whether it is piano, guitar, violin, or flute, playing a note requires you to
+do multiple things, but you eventually learn how to just "play D" or the like.
+Chords are an even better example, especially with instruments like the guitar
+or ukelele where playing a chord requires you to put different fingers in
+different places and then strum the strings. But once you learn to do that, you
+can be told to just play a G major without being told all of the parts of doing
+so.</p>
+<p>Functions are a way to tell a computer what the steps are do doing something
+and then do it just by using its name. A basic function looks like this:</p>
+<codeblock>function myFunction() {
+  some lines
+  of code
+}</codeblock>
+<p>The word <code>function</code> is always there, followed by the name we want
+to give the function. Functions can be named just like variables, but it is
+useful to use names that help you remember what the function does. Then
+everything between the <code>{</code> and <code>}</code> is what is called the
+<b>function body</b>. The function body holds the steps that are needed to
+perform the quilt's new ability.</p>
+<p>This function from the first example colors three pixels red, green, and
+blue:</p>
+<codeblock>function on() {
+  set(0, 0, 255, 0, 0);
+  set(1, 0, 0, 255, 0);
+  set(2, 0, 0, 0, 255);
+}</codeblock>
+<p>Once we have told the quilt what that function means, we can tell it to use
+that new ability by writing the name of the function followed by
+<code>()</code>, so <code>on()</code> for this example. This is called
+<b>calling</b> the function. We can call the function any number of times
+anywhere that we would write another line of code. In the first example we call
+the <code>on</code> and <code>off</code> functions multiple times to make the
+pixels blink a custom pattern.</p>
+<p>Every time we call the function, it is as if we copied everything between
+the <code>{</code> and <code>}</code> for the function and replaced the
+function call with it. So with our above example of <code>on</code>, the
+code</p>
+<codeblock>on();
+wait(1);
+on();</codeblock>
+<p>Is the same as:</p>
+<codeblock>set(0, 0, 255, 0, 0);
+set(1, 0, 0, 255, 0);
+set(2, 0, 0, 0, 255);
+wait(1);
+set(0, 0, 255, 0, 0);
+set(1, 0, 0, 255, 0);
+set(2, 0, 0, 0, 255);</codeblock>
 
+<question answer="4, each time draw is called it sets a pixel twice, and draw is called twice">
+How many times will the following code set a pixel?<br>
+<codeblock>function draw() {
+  set(1, 0, 255, 255, 255);
+  set(0, 1, 128, 128, 128);
+}
+draw();
+draw();</codeblock>
+</question>
+<question answer="30 (5 sets per call * 6 calls)">
+If I have a function that sets pixels 5 times and I call that function 6 times,
+how many times will I set a pixel?
+</question>
+<h2>Let's Start An Argument</h2>
+<p>Teaching the quilt how to do the same thing whenever we want is great and
+powerful, but it would be even more powerful if we could give it some
+information to use when doing that thing. For example, your coach could tell
+you how hard to throw a ball. Or your conductor could tell you how loud to play
+a note or chord. We can do the same with functions by giving it what are called
+<b>arguments</b>.</p>
+<p>Take for example this function that turns the top left pixel red:</p>
+<codeblock>function red() {
+  set(0, 0, 255, 0, 0);
+}</codeblock>
+<p>That's great if we want to color the top left pixel red a lot, but what if
+we want to color a different pixel red? We can add an <b>argument</b> to the
+function like this:</p>
+<codeblock>function red(x) {
+  set(x, 0, 255, 0, 0);
+};
+red(0);
+red(1);</codeblock>
+<p>By putting a variable name inside the <code>()</code> after the function
+name, we can then use that variable in the function body just like we did with
+other variables in earlier tutorials. The difference is that the value of the
+variable will be decided by the line that <b>calls</b> the function.</p>
+<p>When we get to the <code>red(0);</code> line, we're telling it what the
+value of x will be when the function runs. This is called <b>passing</b> an
+argument. The <code>red(0);</code> line effectively becomes:</p>
+<codeblock>x = 0;
+set(x, 0, 255, 0, 0);
+</codeblock>
+<p>Note that it isn't exactly the same because it doesn't make a variable
+called x outside of the <code>red</code> function body, but we'll get into
+those details in a later tutorial.</p>
+<p>Continuing the expansion, the whole code above essentially becomes:</p>
+<codeblock>x = 0;
+set(x, 0, 255, 0, 0);
+x = 1;
+set(x, 0, 255, 0, 0);
+</codeblock>
+<question answer="(2, 3)">
+What coordinate will get turned yellow in the following code?
+<codeblock>function yellow(y) {
+  set(2, y, 255, 255, 0);
+}
+yellow(3);
+</codeblock>
+</question>
+<question answer="4">
+How many different pixels will be blue after the following code?
+<codeblock>function blue(x) {
+  set(x, x, 0, 0, 255);
+}
+blue(0);
+blue(2);
+blue(4);
+blue(6);
+</codeblock>
+</question>
 
-
-
+<h2>When One Argument Isn't Enough</h2>
+<p>Passing an argument like above is very useful, but sometimes one argument
+won't cut it for our needs. Take the above <code>red</code> example, we can
+tell it which column to put the red pixel in, but wouldn't it be great if we
+could also tell it which row?</p>
+<p>It would be great, and we can do exactly that by passing <i>multiple</i>
+arguments to the function like so:</p>
+<codeblock>function red(x, y) {
+  set(x, y, 255, 0, 0);
+}
+red(0, 0);
+red(0, 1);
+red(1, 0);
+</codeblock>
+<p>This works just like with a single argument, but we give more than one
+variable name separated by <code>,</code> when we write the function, and we
+put more than one value between the <code>()</code> when we call the function.
+Just like in the previous section, this effectively becomes:</p>
+<codeblock>x = 0;
+y = 0;
+set(x, y, 255, 0, 0);
+x = 0;
+y = 1;
+set(x, y, 255, 0, 0);
+x = 1;
+y = 0;
+set(x, y, 255, 0, 0);
+</codeblock>
+<p>We can give a function any number of arguments as long as we pass the same
+number of arguments every time we call it.</p>
+<question answer="(4, 1)">
+Which pixel would get turned red if we called <code>red(4, 1);</code> with the
+code from this section?
+</question>
+<question answer="3 (red, green, and blue)">
+How many arguments does this function take?
+<codeblock>function corner(red, green, blue) {
+  set(0, 0, red, green, blue);
+}</codeblock>
+</question>
+<h2>Exercise</h2>
+<p>Write a function that makes the entire display a solid color and use it to
+make an animation that changes the color of the display to various colors over
+time. Here is some starter code with a function that draws a blue line:</p>
+<editor>
+function blueline(y) {
+    for (x of [0, 1, 2, 3, 4, 5, 6, 7]) {
+        set(x, y, 0, 0, 255);
+    }
+}
+blueline(3);
+</editor>
 </body>
 <script src="/programmer/embedded.js"></script>
 <script src="questions.js"></script>
