@@ -343,7 +343,7 @@ function onRenderWorkerMessage(ev) {
 	let data = ev.data;
   if (data.cmd == "render") {
   	if (renderData.length > renderFrame &&
-        data.x >= 0 && data.x < videoWith &&
+        data.x >= 0 && data.x < videoWidth &&
         data.y >= 0 && data.y < videoHeight) {
     	let offset = 3 * (data.x + videoWidth * data.y);
       renderData[renderFrame][offset] = data.r;
